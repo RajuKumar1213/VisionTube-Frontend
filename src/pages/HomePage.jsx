@@ -36,7 +36,7 @@ function HomePage() {
         console.log("Initial Fetch Response:", response?.data); // Debugging API response
 
         if (response?.data?.data?.length > 0) {
-          setVideos(response.data.data);
+          setVideos(response.data);
           setHasMore(response?.data?.hasMore);
           setLastVideoId(response?.data?.lastVideoId);
         } else {
