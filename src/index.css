@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Prevent horizontal overflow */
+html,
+body {
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+  max-width: 100%; /* Ensure the body doesn't exceed the viewport width */
+}
+
+/* Ensure all elements stay within the viewport */
+* {
+  box-sizing: border-box; /* Include padding and border in element width */
+}
+
+/* @import "@fortawesome/fontawesome-free/css/all.min.css"; */
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #4b5563;
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: #1f2937;
+  /* height: 20px; */
+}
+
+.my-scrollbar {
+  overflow-x: auto; /* Enable horizontal scrolling */
+}
+
+.my-scrollbar::-webkit-scrollbar {
+  height: 12px; /* Set horizontal scrollbar height */
+}
+
+input:-webkit-autofill {
+  background-color: #1e293b !important; /* Dark background for autofill */
+  -webkit-box-shadow: 0 0 0px 1000px #1e293b inset !important; /* Match input background */
+  color: white !important; /* Adjust text color */
+}
+
+input::selection {
+  background-color: #333333; /* Darker background */
+  color: white; /* Text color for visibility */
+}
