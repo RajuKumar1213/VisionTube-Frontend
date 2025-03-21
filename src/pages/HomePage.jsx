@@ -21,7 +21,6 @@ function HomePage() {
   useEffect(() => {
     window.scrollTo(0, 0);
     setLoading(true);
-    setVideos([]);
     setLastVideoId(null);
     setHasMore(true);
 
