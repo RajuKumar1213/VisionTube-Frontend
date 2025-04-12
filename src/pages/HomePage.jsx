@@ -26,22 +26,20 @@ function HomePage() {
 
     videoService
       .getAllVideos({
-        limit: 50,
+        limit: 10,
         lastVideoId: null,
         sortType: "desc",
         sortBy: "views",
         query,
       })
       .then((response) => {
-        console.log("Initial Fetch Response:", response?.data); // Debugging API response
-
-        if (response?.data?.data?.length > 0) {
-          setVideos(response.data.data);
-          setHasMore(response?.data?.hasMore);
-          setLastVideoId(response?.data?.lastVideoId);
-        } else {
-          console.warn("No videos in response, state not updated");
+        console.log("Initial Fetch Response:", response?.data.data); // Debugging API response
+        {
+          console.log(response.data.data.data);
         }
+        setVideos(response.data.data);
+        setHasMore(response?.data?.hasMore);
+        setLastVideoId(response?.data?.lastVideoId);
 
         setLoading(false);
       })
@@ -108,27 +106,27 @@ function HomePage() {
               : "No videos found. There is some problem occurred."}
           </h1>
         ) : (
-          // <InfiniteScroll
-          //   dataLength={videos?.length}
-          //   next={fetchMoreData}
-          //   hasMore={hasMore}
-          //   loader={<Spinner />}
-          //   endMessage={
-          //     <div style={{ textAlign: "center", marginBottom: "10px" }}>
-          //       <b>Yay! You have seen it all</b>
-          //     </div>
-          //   }
-          // >
-          <div className="md:pt-20 pt-14 pb-8 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
-            {videos.map((video) => (
-              <VideoCard
-                key={video._id}
-                props={video}
-                className="h-56 md:h-52 w-full"
-              />
-            ))}
-          </div>
-          // </InfiniteScroll>
+          <InfiniteScroll
+            dataLength={videos?.length}
+            next={fetchMoreData}
+            hasMore={hasMore}
+            loader={<Spinner />}
+            endMessage={
+              <div style={{ textAlign: "center", marginBottom: "10px" }}>
+                <b>Yay! You have seen it all</b>
+              </div>
+            }
+          >
+            <div className="md:pt-20 pt-14 pb-8 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
+              {videos.map((video) => (
+                <VideoCard
+                  key={video._id}
+                  props={video}
+                  className="h-56 md:h-52 w-full"
+                />
+              ))}
+            </div>
+          </InfiniteScroll>
         )}
       </div>
     </div>
