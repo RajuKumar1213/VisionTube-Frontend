@@ -32,15 +32,11 @@ function HomePage() {
         sortBy: "views",
         query,
       })
-      .then((response) => {
-        console.log("Initial Fetch Response:", response?.data.data); // Debugging API response
-        {
-          console.log(response.data.data.data);
-        }
-        setVideos(response.data.data);
-        setHasMore(response?.data?.hasMore);
-        setLastVideoId(response?.data?.lastVideoId);
-
+      .then(({ data, hasMore, lastVideoId }) => {
+        console.log("Fetched videos:", data);
+        setVideos(data.data);
+        setHasMore(hasMore);
+        setLastVideoId(lastVideoId);
         setLoading(false);
       })
       .catch((err) => {
