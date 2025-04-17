@@ -61,17 +61,13 @@ export class VideoService {
       });
 
       // Normalize response structure
-      const raw = response.data;
+      // const raw = response.data;
 
-      const data = raw?.data ?? raw; // <-- handle both wrapped and unwrapped
-      const hasMore = raw?.hasMore ?? raw?.data?.hasMore ?? false;
-      const lastVideoId = raw?.lastVideoId ?? raw?.data?.lastVideoId ?? null;
+      // const data = raw?.data ?? raw; // <-- handle both wrapped and unwrapped
+      // const hasMore = raw?.hasMore ?? raw?.data?.hasMore ?? false;
+      // const lastVideoId = raw?.lastVideoId ?? raw?.data?.lastVideoId ?? null;
 
-      return {
-        data,
-        hasMore,
-        lastVideoId,
-      };
+      return response.data;
     } catch (error) {
       console.error(
         "ERROR :: getting all videos::",

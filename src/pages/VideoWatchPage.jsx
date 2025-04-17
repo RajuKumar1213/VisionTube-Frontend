@@ -27,7 +27,7 @@ function VideoWatchPage() {
         sortBy: "views",
       })
       .then((response) => {
-        const newVideos = response?.data?.data || [];
+        const newVideos = response?.data?.videos || [];
         setVideos(newVideos);
         setHasMore(response?.data?.hasMore);
         setLastVideoId(response?.data?.lastVideoId);
@@ -53,7 +53,7 @@ function VideoWatchPage() {
         sortBy: "views",
       });
 
-      const newVideos = response?.data?.data || [];
+      const newVideos = response?.data?.videos || [];
 
       const uniqueVideos = newVideos.filter((video) => {
         if (seenVideos.current.has(video._id)) return false;

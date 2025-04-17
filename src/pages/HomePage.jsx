@@ -32,11 +32,11 @@ function HomePage() {
         sortBy: "views",
         query,
       })
-      .then(({ data, hasMore, lastVideoId }) => {
-        console.log("Fetched videos:", data);
-        setVideos(data.data);
-        setHasMore(hasMore);
-        setLastVideoId(lastVideoId);
+      .then((response) => {
+        console.log("Fetched videos:", response?.data?.hasMore);
+        setVideos(response?.data?.videos);
+        setHasMore(response?.data?.hasMore);
+        setLastVideoId(response?.data?.lastVideoId);
         setLoading(false);
       })
       .catch((err) => {
@@ -62,13 +62,10 @@ function HomePage() {
       })
       .then((response) => {
         setError(""); // Clear any previous errors
-        if (response?.data?.data?.length > 0) {
-          setVideos((prevVideos) => [...prevVideos, ...response.data.data]);
-          setLastVideoId(response?.data?.lastVideoId);
-          setHasMore(response?.data?.hasMore);
-        } else {
-          console.warn("No videos in response, state not updated");
-        }
+
+        setVideos((prevVideos) => [...prevVideos, ...response?.data?.videos]);
+        setLastVideoId(response?.data?.lastVideoId);
+        setHasMore(response?.data?.hasMore);
       })
       .catch((err) => {
         console.error("Error fetching more videos:", err);
